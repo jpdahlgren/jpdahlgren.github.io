@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+  <script src="dmxAppConnect/dmxAppConnect.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
+  <script src="dmxAppConnect/dmxFormatter/dmxFormatter.js" defer=""></script>
+  <link rel="stylesheet" href="dmxAppConnect/dmxDatePicker/daterangepicker.min.css">
+  <script src="dmxAppConnect/dmxDatePicker/daterangepicker.min.js" defer=""></script>
+  <link rel="stylesheet" href="dmxAppConnect/dmxDatePicker/dmxDatePicker.css">
+  <script src="dmxAppConnect/dmxDatePicker/dmxDatePicker.js" defer=""></script>
+  </head>
+  <body is="dmx-app" id="EmployeeData">
+    <dmx-serverconnect id="serverconnect1" url="dmxConnect/api/Employees/ListEmployees.php" dmx-param:filter="text1.value"></dmx-serverconnect>
+    <input id="text1" name="text1" type="text" class="form-control mt-0 mb-0 ml-0 mr-1 pt-0 pb-0 pl-2 pr-2">
+    <p>Employee Last Name Search</p>
+    <div class="container">
+      <h1>
+        Employee Data</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Date Stamp</th>
+          </tr>
+        </thead>
+        <tbody is="dmx-repeat" id="repeat1" dmx-bind:repeat="serverconnect1.data.AllEmployees">
+          <tr>
+            <th scope="row">{{employee_id}}</th>
+            <td>{{first_name}}</td>
+            <td>{{last_name.uppercase()}}</td>
+            <td>{{date_stamp}}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" data-toggle="button">Button</button>
+              hello</td>
+          </tr>
+        </tbody></table>
+    </div>
+    <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="dmxConnect/api/Employees/insert%20row.php" dmx-generator="bootstrap4" dmx-form-type="vertical">
+      <div class="form-group col-6 offset-1">
+        <label for="inp_first_name">First name</label>
+        <input type="text" class="form-control" id="inp_first_name" name="first_name" aria-describedby="inp_first_name_help" placeholder="Enter First name">
+      </div>
+      <div class="form-group col-6 offset-1">
+        <label for="inp_last_name">Last name</label>
+        <input type="text" class="form-control" id="inp_last_name" name="last_name" aria-describedby="inp_last_name_help" placeholder="Enter Last name">
+      </div>
+      <div class="form-group col-6 offset-1">
+        <label for="inp_date_stamp">Date stamp</label>
+        <input type="date" class="form-control" id="inp_date_stamp" name="date_stamp" aria-describedby="inp_date_stamp_help" placeholder="Enter Date stamp" is="dmx-date-picker">
+      </div>
+      <div class="form-group offset-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <div class="form-group offset-3">
+        <button type="reset" class="btn">cancel</button>
+      </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body></html>
