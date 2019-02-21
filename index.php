@@ -1,3 +1,3 @@
 <?php
 
-echo "Hello World!  /xampp/htdocs";
+echo "Hello World!  /xampp/htdocs send to GitHub";
